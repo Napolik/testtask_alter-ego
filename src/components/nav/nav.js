@@ -21,15 +21,27 @@ const useStyles = createUseStyles({
   
 const Nav = () => {
     const classes = useStyles();
-    return(
-        <div>
+    const isLoggedIn = localStorage.getItem('isLogged');
+    console.log('Nav silogged: ' +isLoggedIn);
+    if (isLoggedIn === true) {
+        return(
             <ul className={classes.navContainer}>
                 <li className={classes.navItem}><Link to="/">Home</Link></li>
                 <li className={classes.navItem}><Link to="/news/">News</Link></li>
-                <li className={classes.navItem}><Link to="/profile/">Profile</Link></li>
+                <li className={classes.navItem}><Link to="/profile">Profile</Link></li>
             </ul> 
-        </div>
-    )
+        )      
+    }else {
+        return(
+            <ul className={classes.navContainer}>
+                <li className={classes.navItem}><Link to="/">Home</Link></li>
+                <li className={classes.navItem}><Link to="/news/">News</Link></li>
+                <li className={classes.navItem}><Link to="/login"><button>Login</button></Link></li>
+            </ul> 
+        )
+    }
+
+    
 }
 
 export default Nav;
